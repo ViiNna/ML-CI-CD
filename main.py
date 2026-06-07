@@ -1,4 +1,3 @@
-import KEY
 from flask import Flask, jsonify, request
 from sklearn.linear_model import LinearRegression
 import numpy as np
@@ -82,7 +81,8 @@ def health():
 
 @app.route("/config", methods=["GET"])
 def key():
-    return jsonify({"key": KEY})
+    return jsonify({"key": os.environ.get("KEY", "brak")})
+
 
 
 port = int(os.environ.get("PORT", 8080))

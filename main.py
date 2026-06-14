@@ -103,6 +103,8 @@ def get_accuracy():
 
 
 port = int(os.environ.get("PORT", 8080))
-serve(app, host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    serve(app, host="0.0.0.0", port=port)
+
 
 

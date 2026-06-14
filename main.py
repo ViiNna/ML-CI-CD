@@ -1,10 +1,10 @@
 from flask import Flask, jsonify, request
 from sklearn.linear_model import LinearRegression
 import numpy as np
+from sklearn.metrics import accuracy_score
 from waitress import serve
 import os
 
-#ZADANIE 1
 
 # Utworzenie nowej instancji flask
 app = Flask(__name__)
@@ -77,11 +77,28 @@ def health():
 
 
 
-#ZADANIE 5
-
 @app.route("/config", methods=["GET"])
 def key():
     return jsonify({"key": os.environ.get("KEY", "brak")})
+
+
+#dodanie funkcji pomocniczych do zadania 1
+def train_and_predict():
+    X = np.array([[1], [2], [3], [4], [5]])
+    y = np.array([2, 4, 6, 8, 10])
+
+    preds = model.predict(X)
+    return preds, y
+
+
+def get_accuracy():
+    X = np.array([[1], [2], [3], [4], [5]])
+    y_true = np.array([0, 0, 0, 1, 1])
+
+    preds = model.predict(X)
+    y_pred = (preds >= 6).astype(int)
+
+    return accuracy_score(y_true, y_pred)
 
 
 

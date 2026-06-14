@@ -14,6 +14,7 @@ def test_predictions_not_none():
 
 
 
+
 def test_predictions_length():
     """
     Test 2 (na maksymalną ocenę 5): Sprawdza, czy długość listy predykcji jest większa od 0 i czy odpowiada
@@ -31,6 +32,7 @@ def test_predictions_value_range():
     Test 3 (na maksymalną ocenę 5): Sprawdza, czy wartości w predykcjach mieszczą się w spodziewanym zakresie:
    Dla zbioru Iris mamy 3 klasy (0, 1, 2).
     """
+    #jako iż mój model polega na regresji liniowej a nie klasyfikacji to zamiast tej funkcji zrobiłam funkcję która sprawdza czy wartości predykcji są liczbami i czy mieszczą sie w oczekiwanym zakresie
     preds, _ = train_and_predict()
     assert all(isinstance(float(p), float) for p in preds), "All predictions should be floats."
     assert all(p > 0 for p in preds), "Predictions should be positive."
